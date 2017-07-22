@@ -1,0 +1,36 @@
+camel:
+  springboot:
+    # The Camel context name
+    name: CamelRestJpa
+
+  component:
+    servlet:
+      mapping:
+        contextPath: /camel-rest-jpa/*
+
+postgresql:
+  service:
+    host:     localhost
+    port:     5432
+    database: sampledb
+    username:     postgres
+    password: 123456
+
+spring:
+  # Spring JDBC configuration
+  datasource:
+    url:      jdbc:postgresql://${postgresql.service.host}:${postgresql.service.port}/${postgresql.service.database}
+    username: ${postgresql.service.username}
+    password: ${postgresql.service.password}
+
+  # Spring Data JPA configuration
+  jpa:
+    hibernate:
+      # To be updated in real production usage!
+      ddl-auto: create-drop
+    show-sql: false
+
+# The application configuration properties
+example:
+  generateOrderPeriod: 10s
+  processOrderPeriod: 30s
